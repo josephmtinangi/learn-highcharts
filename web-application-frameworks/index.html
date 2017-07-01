@@ -5,12 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>Web Application Frameworks</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		.navbar {
+			border-radius: 0;
+		}
+	</style>	
 </head>
 <body>
 
-	<p>Loading...</p>
-	<div id="chart"></div>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="https://github.com/josephmtinangi/learn-highcharts">
+						<i class="fa fa-github"></i>
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/josephmtinangi/learn-highcharts#fork-destination-box">
+						<i class="fa fa-code-fork"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<p>Loading...</p>
+				<div id="chart"></div>				
+			</div>
+		</div>
+	</div>
 
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
