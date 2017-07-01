@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Web Application Frameworks</title>
+</head>
+<body>
+
+	<p>Loading...</p>
+	<div id="chart"></div>
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(function () {
+			var options = {
+				chart: {
+					renderTo: 'chart',
+					type: 'column'
+				},
+				title: {
+					text: 'Web Application Frameworks'
+				},
+				xAxis: {
+					categories: ['Stargazers', 'Watchers', 'Forks', 'Size', 'Open Issues'],
+					title: {
+						text: 'Categories'
+					}
+				},
+				yAxis: {
+					title: {
+						text: 'Count',
+						align: 'middle'
+					}
+				},
+				plotOptions: {
+					column: {
+						dataLabels: {
+							enabled: true
+						}
+					}
+				},
+				series: [{}, {}, {}]
+			};
+
+			var apiUrl = 'https://api.github.com';
+			var orgs = ['laravel', 'django', 'rails'];
+			var frameworks = ["Laravel", "Django", "Ruby On Rails"];
+			var colors = ["#FF6138", "#17607D", "#413659"];			
+
+			var data = [];
+
+			var promises = [];
+
+			orgs.forEach(function (item, index, array) {
+				promises.push(axios.get(apiUrl + '/orgs/' + orgs[index] + '/repos'));
+			});
+
+			axios.all(promises)
+				.then(function(results) {
+					results.forEach(function(response) {
+						var stat = [
+							response.data[0].stargazers_count,
+							response.data[0].watchers_count,
+							response.data[0].size,
+							response.data[0].open_issues_count
+						];
+						collectData(stat);
+					});
+				});
+
+			function collectData(stat) {
+				data.push(stat);
+				if(data.length == orgs.length) {
+					$('p').text('');
+					drawChart(data);
+				}
+			}
+
+			function drawChart(data) {
+				frameworks.forEach(function(item, index, array) {
+					options.series[index].name = frameworks[index];
+					options.series[index].data = data[index];
+					options.series[index].color = colors[index];
+				});
+
+				var chart = new Highcharts.Chart(options);
+			}
+
+		});
+
+	</script>
+</body>
+</html>
