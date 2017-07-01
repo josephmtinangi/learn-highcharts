@@ -14,6 +14,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 		$(function () {
+
+			var apiUrl = 'https://api.github.com';
+			var orgs = ['laravel', 'django', 'meteor'];
+			var frameworks = ["Laravel", "Django", 'Meteor'];
+			var colors = ["#FF6138", "#17607D", "#000000"];			
+
+			var data = [];
+			var promises = [];
+			var seriesObjs = [];
+
+			orgs.forEach(function (item, index, array) {
+				seriesObjs.push(new Object());
+			});
+
 			var options = {
 				chart: {
 					renderTo: 'chart',
@@ -41,17 +55,8 @@
 						}
 					}
 				},
-				series: [{}, {}, {}]
-			};
-
-			var apiUrl = 'https://api.github.com';
-			var orgs = ['laravel', 'django', 'rails'];
-			var frameworks = ["Laravel", "Django", "Ruby On Rails"];
-			var colors = ["#FF6138", "#17607D", "#413659"];			
-
-			var data = [];
-
-			var promises = [];
+				series: seriesObjs
+			};			
 
 			orgs.forEach(function (item, index, array) {
 				promises.push(axios.get(apiUrl + '/orgs/' + orgs[index] + '/repos'));
