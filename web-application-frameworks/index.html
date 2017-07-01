@@ -16,9 +16,9 @@
 		$(function () {
 
 			var apiUrl = 'https://api.github.com';
-			var orgs = ['laravel', 'django', 'meteor'];
-			var frameworks = ["Laravel", "Django", 'Meteor'];
-			var colors = ["#FF6138", "#17607D", "#000000"];			
+			var orgs = ["meteor", "rails", "laravel", "expressjs", "pallets", "django", "balderdashy", "spring-projects", "symfony", "linnovate", "playframework", "sinatra", "revel", "jhipster", "cakephp", "NancyFx", "derbyjs", "WhitestormJS", "hanami", "padrino", "aspnetboilerplate", "ninjaframework", "kemalcr", "web2py", "pakyow", "frappe", "perl-catalyst"];
+			var frameworks = ["meteor", "rails", "laravel", "expressjs", "pallets", "django", "balderdashy", "spring-projects", "symfony", "linnovate", "playframework", "sinatra", "revel", "jhipster", "cakephp", "NancyFx", "derbyjs", "WhitestormJS", "hanami", "padrino", "aspnetboilerplate", "ninjaframework", "kemalcr", "web2py", "pakyow", "frappe", "perl-catalyst"];
+			var colors = ["#92B558", "#DC4C46", "#672E3B", "#F3D6E4", "#C48F65", "#223A5E", "#898E8C", "#005960", "#9C9A40", "#4F84C4", "#D2691E", "#578CA9", "#F6D155", "#004B8D", "#F2552C", "#95DEE3", "#EDCDC2", "#CE3175", "#5A7247", "#CFB095", "#4C6A92", "#92B6D5", "#838487", "#B93A32", "#AF9483", "#006E51", "#D8AE47", "#9E4624", "#F7786B"];			
 
 			var data = [];
 			var promises = [];
@@ -31,13 +31,14 @@
 			var options = {
 				chart: {
 					renderTo: 'chart',
-					type: 'column'
+					type: 'column',
+					height: 500
 				},
 				title: {
 					text: 'Web Application Frameworks'
 				},
 				xAxis: {
-					categories: ['Stargazers', 'Watchers', 'Forks', 'Size', 'Open Issues'],
+					categories: ['Stargazers', 'Watchers', 'Size', 'Open Issues'],
 					title: {
 						text: 'Categories'
 					}
